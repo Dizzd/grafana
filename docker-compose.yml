@@ -13,19 +13,19 @@ services:
       - ./prometheus/:/etc/prometheus/
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
-      - "--storage.tsdb.path=/prometheus"
+  #    - "--storage.tsdb.path=/prometheus"
     ports:
       - 9090:9090
     networks:
       - grafana
 
-  loki:
-    image: grafana/loki:latest
-    ports:
-      - 3100:3100
-    command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - grafana
+ # loki:
+ #   image: grafana/loki:latest
+ #   ports:
+ #     - 3100:3100
+ #   command: -config.file=/etc/loki/local-config.yaml
+ #   networks:
+ #     - grafana
 
   promtail:
     image: grafana/promtail:latest
@@ -41,18 +41,18 @@ services:
     networks:
       - grafana
 
-  app:
-    build: ./app
-    ports:
-      - 8083:90
-    volumes:
-      - app_data:/var/log
-    networks:
-      - grafana
+ # app:
+ #   build: ./app
+ #   ports:
+ #     - 8083:90
+ #   volumes:
+ #     - app_data:/var/log
+ #   networks:
+ #     - grafana
 
-  db:
-    image: grafana/tns-db:latest
-    ports:
-      - 8084:90
-    networks:
-      - grafana
+ # db:
+ #   image: grafana/tns-db:latest
+ #   ports:
+ #     - 8084:90
+ #   networks:
+ #     - grafana
